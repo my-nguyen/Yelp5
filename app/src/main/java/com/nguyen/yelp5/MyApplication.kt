@@ -1,8 +1,7 @@
 package com.nguyen.yelp5
 
 import android.app.Application
-import com.nguyen.yelp5.di.DaggerAppGraph
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication : Application() {
-    val appGraph = DaggerAppGraph.create()
-}
+@HiltAndroidApp
+class MyApplication : Application()

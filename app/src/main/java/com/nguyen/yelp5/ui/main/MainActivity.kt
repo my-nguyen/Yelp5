@@ -4,18 +4,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nguyen.yelp5.MyApplication
-import com.nguyen.yelp5.data.repository.RestaurantRepository
 import com.nguyen.yelp5.databinding.ActivityMainBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var repository: RestaurantRepository
-
-    private val viewModel: MainViewModel by viewModels { MainViewModel.factory(repository) }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appGraph.inject(this)
         super.onCreate(savedInstanceState)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
