@@ -1,4 +1,4 @@
-package com.nguyen.yelp5
+package com.nguyen.yelp5.data.model
 
 data class YelpResult(val total: Int, val businesses: List<Restaurant>)
 
