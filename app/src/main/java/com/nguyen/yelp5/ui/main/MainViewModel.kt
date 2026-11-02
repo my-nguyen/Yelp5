@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nguyen.yelp5.data.model.Restaurant
 import com.nguyen.yelp5.data.repository.RestaurantRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
-    private val repository: RestaurantRepository
+// All parameters have defaults, so the default ViewModelProvider factory can create it.
+class MainViewModel(
+    private val repository: RestaurantRepository = RestaurantRepository()
 ) : ViewModel() {
     private val _restaurants = MutableLiveData<List<Restaurant>>(emptyList())
     val restaurants: LiveData<List<Restaurant>> = _restaurants

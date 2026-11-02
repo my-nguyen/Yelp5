@@ -12,24 +12,17 @@ import com.nguyen.yelp5.R
 import com.nguyen.yelp5.data.model.Category
 import com.nguyen.yelp5.data.model.Location
 import com.nguyen.yelp5.data.model.Restaurant
-import com.nguyen.yelp5.di.FakeYelpService
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
+import com.nguyen.yelp5.ServiceLocator
+import com.nguyen.yelp5.testutil.FakeYelpService
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Inject
 
-@HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
-    @get:Rule
-    val hiltRule = HiltAndroidRule(this)
-
-    @Inject
-    lateinit var fakeService: FakeYelpService
+    private val fakeService = FakeYelpService()
 
     private val toastSpot = Restaurant(
         name = "Toast Spot",
@@ -43,7 +36,14 @@ class MainActivityTest {
     )
 
     @Before
-    fun setUp() = hiltRule.inject()
+    fun setUp() {
+        ServiceLocator.yelpServiceOverride = fakeService
+    }
+
+    @After
+    fun tearDown() {
+        ServiceLocator.yelpServiceOverride = null
+    }
 
     @Test
     fun launch_searchesAvocadoToastInNewYork() {
