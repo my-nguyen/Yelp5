@@ -1,5 +1,6 @@
-package com.nguyen.yelp5
+package com.nguyen.yelp5.di
 
+import com.nguyen.yelp5.data.remote.YelpService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

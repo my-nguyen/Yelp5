@@ -1,4 +1,4 @@
-package com.nguyen.yelp5
+package com.nguyen.yelp5.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.nguyen.yelp5.data.model.Restaurant
 import com.nguyen.yelp5.databinding.ItemRestaurantBinding
 
-class RestaurantsAdapter(val restaurants: List<Restaurant>) : RecyclerView.Adapter<RestaurantsAdapter.ViewHolder>() {
+class RestaurantsAdapter : RecyclerView.Adapter<RestaurantsAdapter.ViewHolder>() {
+    private var restaurants: List<Restaurant> = emptyList()
+
+    fun submit(newRestaurants: List<Restaurant>) {
+        restaurants = newRestaurants
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(val binding: ItemRestaurantBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(restaurant: Restaurant) {
             binding.apply {
